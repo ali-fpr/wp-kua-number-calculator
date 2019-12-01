@@ -6,7 +6,7 @@ Description: Getting your KUA number by date of brith. Shortcode: [wpknc_form]
 Version: 1.0
 Author: Ali.fpr
 Author URI: t.me/ali_fpr
-License: Non-licensed
+License: GPLv2 or later
 
 * Shortcode: [wpknc_form]
 * References: https://www.thespruce.com/your-feng-shui-kua-number-calculator-1274670
@@ -61,7 +61,7 @@ if(!class_exists('wpknc')) {
 				$wpknc_fd = $submited_form['wpknc_dd'];
 				$wpknc_fg = $submited_form['wpknc_gender'];
 
-				if(($wpknc_fm == 2) or ($wpknc_fm == 3 and ($wpknc_fd <= 20))) {
+				if(($wpknc_fm == 1) or ($wpknc_fm == 2 and ($wpknc_fd <= 20))) {
 					$wpknc_fy = $wpknc_fy - 1;
 				}
 
