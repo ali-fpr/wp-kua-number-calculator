@@ -22,7 +22,7 @@ if(!class_exists('wpknc')) {
 		public $wpknc_plugin_url	= NULL;
 		public $wpknc_result_number	= NULL;
 		public $wpknc_result_group	= NULL;
-		public $wpknc_group			= ['West Group' => [2,6,7,8], 'East Group' => [1,3,4,9]];
+		public $wpknc_group			= ['West Group' => [2,5,6,7,8], 'East Group' => [1,3,4,9]];
 
 		public static function instance() {
 			if(is_null(self::$_instance)) {
@@ -58,11 +58,11 @@ if(!class_exists('wpknc')) {
 				switch($wpknc_fg) {
 					case 'famale':
 					$wpknc_kn = ($wpknc_fy < 2000) ? $wpknc_kn + 5 : $wpknc_kn + 6;
-					$wpknc_kn = ($wpknc_kn == 5) ? $wpknc_kn + 3 : $wpknc_kn;
+					// $wpknc_kn = ($wpknc_kn == 5) ? $wpknc_kn + 3 : $wpknc_kn;
 					break;
 					case 'male':
 					$wpknc_kn = ($wpknc_fy < 2000) ? 10 - $wpknc_kn : 9 - $wpknc_kn;
-					$wpknc_kn = ($wpknc_kn == 5) ? $wpknc_kn - 3 : $wpknc_kn;
+					// $wpknc_kn = ($wpknc_kn == 5) ? $wpknc_kn - 3 : $wpknc_kn;
 					break;
 				}
 
