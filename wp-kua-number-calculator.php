@@ -9,7 +9,9 @@ Author URI: t.me/ali_fpr
 License: Non-licensed
 
 * Shortcode: [wpknc_form]
-* Reference: https://www.thespruce.com/your-feng-shui-kua-number-calculator-1274670
+* References: https://www.thespruce.com/your-feng-shui-kua-number-calculator-1274670
+* AND
+* https://circle-of-light.com/fengshui/fs-kua.html
 */
 
 if(!defined('ABSPATH')) {
@@ -58,7 +60,9 @@ if(!class_exists('wpknc')) {
 				$wpknc_fm = $submited_form['wpknc_mm'];
 				$wpknc_fd = $submited_form['wpknc_dd'];
 				$wpknc_fg = $submited_form['wpknc_gender'];
-				
+
+
+
 				$wpknc_kn = $this->wpknc_single_digit_maker($wpknc_fy);
 
 				switch($wpknc_fg) {
