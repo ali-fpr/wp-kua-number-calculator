@@ -3,7 +3,7 @@
 Plugin Name: Kua number calculator (Feng shui)
 Plugin URI:
 Description: Getting your KUA number by date of brith. Shortcode: [wpknc_form]
-Version: 1.0
+Version: 1.1
 Author: Ali.fpr
 Author URI: t.me/ali_fpr
 License: GPLv2 or later
