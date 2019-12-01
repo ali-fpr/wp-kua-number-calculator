@@ -73,12 +73,12 @@ if(!class_exists('wpknc')) {
 		}
 
 		public function wpknc_shortcode_forntend() {
+			echo $this->wpknc_result_number . ' (' . $this->wpknc_result_group . ')';
 			include_once($this->wpknc_plugin_url . '/frontend/kua-form.php');
 		}
 
 		public function wpknc_load() {
 			$this->wpknc_calculator($_POST);
-			echo $this->wpknc_result_number . ' (' . $this->wpknc_result_group . ')';
 			add_shortcode('wpknc_form', [$this, 'wpknc_shortcode_forntend']);
 		}
 	}
