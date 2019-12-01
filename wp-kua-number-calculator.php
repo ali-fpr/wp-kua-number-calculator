@@ -19,6 +19,7 @@ if(!defined('ABSPATH')) {
 if(!class_exists('wpknc')) {
 	class wpknc {
 		protected static $_instance = NULL;
+		public $wpknc_plugin_url	= NULL;
 		public $wpknc_result_number	= NULL;
 		public $wpknc_result_group	= NULL;
 		public $wpknc_group			= ['West Group' => [2,6,7,8], 'East Group' => [1,3,4,9]];
@@ -30,7 +31,7 @@ if(!class_exists('wpknc')) {
 		}
 
 		public function __construct() {
-			//echo $this->wpknc_single_digit_maker(99);
+			$this->wpknc_plugin_url = untrailingslashit(plugin_dir_path(__FILE__));
 		}
 
 		public function wpknc_single_digit_maker($num) {
@@ -66,8 +67,12 @@ if(!class_exists('wpknc')) {
 			$this->wpknc_result_number	= $wpknc_kn;
 		}
 
+		public function wpknc_shortcode_forntend() {
+			include_once($this->wpknc_plugin_url . '/frontend/kua-form.php');
+		}
+
 		public function wpknc_load() {
-			
+
 		}
 	}
 }
