@@ -22,7 +22,7 @@ if(!class_exists('wpknc')) {
 
 		public static function instance() {
 			if(is_null(self::$_instance)) {
-				self::$_instance = new self());
+				self::$_instance = new self();
 			}
 		}
 
@@ -30,16 +30,32 @@ if(!class_exists('wpknc')) {
 
 		}
 
+		public function wpknc_single_digit_maker($num) {
+			$num = str_split($num);
+			$num = $num[0] + $num[1];
+
+
+
+
+
+
+			function mknm_make_single_num($num) {
+				$filter_yL2 = str_split($num);
+				$filter_yL2 = $filter_yL2[0] + $filter_yL2[1];
+				return $filter_yL2;
+			}
+		}
+
 		public function wpknc_calculator($submited_form) {
-			
+
 		}
 	}
 }
+wpknc::instance();
 
 
 
-
-if(!class_exists('wp_gamesprofile')) {
+/*if(!class_exists('wp_gamesprofile')) {
 class mafp_kua_number_maker {
 	protected static $mknm_plugin_url;
 	private $mknm_kua_number;
@@ -138,5 +154,5 @@ class mafp_kua_number_maker {
 }
 
 // There we go ;)
-$mafp_kua_number_maker = new mafp_kua_number_maker();
+$mafp_kua_number_maker = new mafp_kua_number_maker();*/
 ?>
