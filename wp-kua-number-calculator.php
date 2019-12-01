@@ -19,6 +19,9 @@ if(!defined('ABSPATH')) {
 if(!class_exists('wpknc')) {
 	class wpknc {
 		protected static $_instance = NULL;
+		public $wpknc_result_number	= NULL;
+		public $wpknc_result_group	= NULL;
+		public $wpknc_group			= ['West Group' => [2,6,7,8], 'East Group' => [1,3,4,9]];
 
 		public static function instance() {
 			if(is_null(self::$_instance)) {
@@ -27,27 +30,44 @@ if(!class_exists('wpknc')) {
 		}
 
 		public function __construct() {
-
+			//echo $this->wpknc_single_digit_maker(99);
 		}
 
 		public function wpknc_single_digit_maker($num) {
-			$num = str_split($num);
-			$num = $num[0] + $num[1];
-
-
-
-
-
-
-			function mknm_make_single_num($num) {
-				$filter_yL2 = str_split($num);
-				$filter_yL2 = $filter_yL2[0] + $filter_yL2[1];
-				return $filter_yL2;
+			while($num > 9) {
+				$num = str_split($num);
+				$num = $num[0] + $num[1];
 			}
+			return $num;
 		}
 
 		public function wpknc_calculator($submited_form) {
+			$wpknc_fy = $submited_form['wpknc_yyyy'];
+			$wpknc_fm = $submited_form['wpknc_mm'];
+			$wpknc_fd = $submited_form['wpknc_dd'];
+			$wpknc_fg = $submited_form['wpknc_gender'];
 
+			$wpknc_fy = ($wpknc_fm < 3) ? $wpknc_fy - 1 : $wpknc_fy;
+			$wpknc_kn = $this->wpknc_single_digit_maker($wpknc_fy);
+
+			switch($wpknc_fg) {
+				case 'famale':
+				$wpknc_kn = ($wpknc_fy < 2000) ? $wpknc_kn + 5 : $wpknc_kn + 6;
+				$wpknc_kn = ($wpknc_kn == 5) ? $wpknc_kn + 3 : $wpknc_kn;
+				break;
+				case 'male':
+				$wpknc_kn = ($wpknc_fy < 2000) ? 10 - $wpknc_kn : 9 - $wpknc_kn;
+				$wpknc_kn = ($wpknc_kn == 5) ? $wpknc_kn - 3 : $wpknc_kn;
+				break;
+			}
+
+
+			$this->wpknc_result_group	= (in_array($wpknc_kn, $this->wpknc_group['West Group'])) ? 'West Group' : 'East Group';
+			$this->wpknc_result_number	= $wpknc_kn;
+		}
+
+		public function wpknc_load() {
+			
 		}
 	}
 }
