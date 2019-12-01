@@ -32,6 +32,9 @@ if(!class_exists('wpknc')) {
 
 		public function __construct() {
 			$this->wpknc_plugin_url = untrailingslashit(plugin_dir_path(__FILE__));
+
+			add_action('plugins_loaded', [$this, 'wpknc_load']);
+			register_activation_hook(__FILE__, [$this, 'wpknc_load']);
 		}
 
 		public function wpknc_single_digit_maker($num) {
@@ -75,6 +78,7 @@ if(!class_exists('wpknc')) {
 
 		public function wpknc_load() {
 			$this->wpknc_calculator($_POST);
+			echo $this->wpknc_result_number . '(' . $this->wpknc_result_group . ')';
 			add_shortcode('wpknc_form', [$this, 'wpknc_shortcode_forntend']);
 		}
 	}
