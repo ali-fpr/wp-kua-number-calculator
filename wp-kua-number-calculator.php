@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Kua number calculator
+Plugin Name: Kua number calculator (Feng shui)
 Plugin URI:
 Description: Getting your KUA number by date of brith. Shortcode: [wpknc_form]
 Version: 1.0
