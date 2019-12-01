@@ -12,8 +12,34 @@ License: Non-licensed
 * Reference: https://www.thespruce.com/your-feng-shui-kua-number-calculator-1274670
 */
 
-defined('ABSPATH') or exit('No direct script access allowed');
+if(!defined('ABSPATH')) {
+	exit('Hi there, no direct script access allowed.');
+}
 
+if(!class_exists('wpknc')) {
+	class wpknc {
+		protected static $_instance = NULL;
+
+		public static function instance() {
+			if(is_null(self::$_instance)) {
+				self::$_instance = new self());
+			}
+		}
+
+		public function __construct() {
+
+		}
+
+		public function wpknc_calculator($submited_form) {
+			
+		}
+	}
+}
+
+
+
+
+if(!class_exists('wp_gamesprofile')) {
 class mafp_kua_number_maker {
 	protected static $mknm_plugin_url;
 	private $mknm_kua_number;
