@@ -61,7 +61,9 @@ if(!class_exists('wpknc')) {
 				$wpknc_fd = $submited_form['wpknc_dd'];
 				$wpknc_fg = $submited_form['wpknc_gender'];
 
-
+				if(($wpknc_fm == 2) or ($wpknc_fm == 3 and ($wpknc_fd <= 20))) {
+					$wpknc_fy = $wpknc_fy - 1;
+				}
 
 				$wpknc_kn = $this->wpknc_single_digit_maker($wpknc_fy);
 
