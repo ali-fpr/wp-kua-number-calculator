@@ -43,28 +43,30 @@ if(!class_exists('wpknc')) {
 		}
 
 		public function wpknc_calculator($submited_form) {
-			$wpknc_fy = $submited_form['wpknc_yyyy'];
-			$wpknc_fm = $submited_form['wpknc_mm'];
-			$wpknc_fd = $submited_form['wpknc_dd'];
-			$wpknc_fg = $submited_form['wpknc_gender'];
+			if(isset($submited_form['wpknc_submit'])) {
+				$wpknc_fy = $submited_form['wpknc_yyyy'];
+				$wpknc_fm = $submited_form['wpknc_mm'];
+				$wpknc_fd = $submited_form['wpknc_dd'];
+				$wpknc_fg = $submited_form['wpknc_gender'];
 
-			$wpknc_fy = ($wpknc_fm < 3) ? $wpknc_fy - 1 : $wpknc_fy;
-			$wpknc_kn = $this->wpknc_single_digit_maker($wpknc_fy);
+				$wpknc_fy = ($wpknc_fm < 3) ? $wpknc_fy - 1 : $wpknc_fy;
+				$wpknc_kn = $this->wpknc_single_digit_maker($wpknc_fy);
 
-			switch($wpknc_fg) {
-				case 'famale':
-				$wpknc_kn = ($wpknc_fy < 2000) ? $wpknc_kn + 5 : $wpknc_kn + 6;
-				$wpknc_kn = ($wpknc_kn == 5) ? $wpknc_kn + 3 : $wpknc_kn;
-				break;
-				case 'male':
-				$wpknc_kn = ($wpknc_fy < 2000) ? 10 - $wpknc_kn : 9 - $wpknc_kn;
-				$wpknc_kn = ($wpknc_kn == 5) ? $wpknc_kn - 3 : $wpknc_kn;
-				break;
+				switch($wpknc_fg) {
+					case 'famale':
+					$wpknc_kn = ($wpknc_fy < 2000) ? $wpknc_kn + 5 : $wpknc_kn + 6;
+					$wpknc_kn = ($wpknc_kn == 5) ? $wpknc_kn + 3 : $wpknc_kn;
+					break;
+					case 'male':
+					$wpknc_kn = ($wpknc_fy < 2000) ? 10 - $wpknc_kn : 9 - $wpknc_kn;
+					$wpknc_kn = ($wpknc_kn == 5) ? $wpknc_kn - 3 : $wpknc_kn;
+					break;
+				}
+
+
+				$this->wpknc_result_group	= (in_array($wpknc_kn, $this->wpknc_group['West Group'])) ? 'West Group' : 'East Group';
+				$this->wpknc_result_number	= $wpknc_kn;
 			}
-
-
-			$this->wpknc_result_group	= (in_array($wpknc_kn, $this->wpknc_group['West Group'])) ? 'West Group' : 'East Group';
-			$this->wpknc_result_number	= $wpknc_kn;
 		}
 
 		public function wpknc_shortcode_forntend() {
@@ -72,7 +74,8 @@ if(!class_exists('wpknc')) {
 		}
 
 		public function wpknc_load() {
-
+			$this->wpknc_calculator($_POST);
+			add_shortcode('wpknc_form', [$this, 'wpknc_shortcode_forntend']);
 		}
 	}
 }
